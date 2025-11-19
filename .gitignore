@@ -4,9 +4,6 @@ node_modules/
 # Build outputs
 dist/
 build/
-!dist/*.dmg
-!dist/*.zip
-!dist/*.blockmap
 
 # Electron
 out/
