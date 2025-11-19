@@ -3,6 +3,13 @@
 <div align="center">
   <img src="assets/icon.svg" alt="Vakitler Icon" width="128" height="128">
   <p><em>macOS menübar'da çalışan Türkçe namaz vakitleri uygulaması</em></p>
+  
+  [![Latest Release](https://img.shields.io/github/v/release/hakanyarman/vakitler-mac-menubar-app?style=for-the-badge&color=blue)](https://github.com/hakanyarman/vakitler-mac-menubar-app/releases/latest)
+  [![Downloads](https://img.shields.io/github/downloads/hakanyarman/vakitler-mac-menubar-app/total?style=for-the-badge&color=green)](https://github.com/hakanyarman/vakitler-mac-menubar-app/releases)
+  [![License](https://img.shields.io/github/license/hakanyarman/vakitler-mac-menubar-app?style=for-the-badge&color=orange)](LICENSE)
+  [![Platform](https://img.shields.io/badge/platform-macOS-lightgrey?style=for-the-badge&logo=apple)](https://github.com/hakanyarman/vakitler-mac-menubar-app)
+  
+  ### [📥 Download Latest Release](https://github.com/hakanyarman/vakitler-mac-menubar-app/releases/latest)
 </div>
 
 ## ✨ Özellikler
@@ -17,11 +24,16 @@
 
 ### Kullanıcılar için
 
-1. [Releases](https://github.com/hakanyarman/vakitler-mac-menubar-app/releases) sayfasından Mac tipinize uygun DMG dosyasını indirin:
-   - **M1/M2/M3 Mac** → `arm64` versiyonu
-   - **Intel Mac** → `x64` versiyonu
-2. DMG dosyasını açın
-3. Uygulamayı Applications klasörüne sürükleyin
+**📦 [En Son Sürümü İndirin](https://github.com/hakanyarman/vakitler-mac-menubar-app/releases/latest)**
+
+Mac tipinize uygun DMG dosyasını seçin:
+- 🍎 **Apple Silicon (M1/M2/M3)** → `Vakitler Menubar App-x.x.x-arm64.dmg`
+- 💻 **Intel Mac** → `Vakitler Menubar App-x.x.x.dmg`
+
+**Kurulum Adımları:**
+1. DMG dosyasını indirin
+2. DMG dosyasını açın (çift tıklayın)
+3. Uygulamayı **Applications** klasörüne sürükleyin
 4. Uygulamayı açın
 
 ### ⚠️ İlk Açılışta Güvenlik Uyarısı
