@@ -27,7 +27,9 @@ jobs:
         run: npm run build
 
       - name: Copy renderer files
-        run: cp src/renderer/*.js src/renderer/*.html dist/renderer/
+        run: |
+          mkdir -p dist/renderer
+          cp src/renderer/*.js src/renderer/*.html dist/renderer/
 
       - name: Build app
         run: npm run package
