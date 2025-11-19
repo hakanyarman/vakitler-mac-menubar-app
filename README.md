@@ -56,7 +56,8 @@ Uygulama Apple Developer hesabı ile imzalanmadığı için macOS güvenlik uyar
 Chrome ile indirdiyseniz bu hatayı alabilirsiniz. Terminal'de şu komutu çalıştırın:
 
 ```bash
-xattr -cr ~/Downloads/Vakitler\ Menubar\ App-*.dmg
+# İndirdiğiniz DMG dosyasının tam ismini kullanın
+xattr -cr ~/Downloads/Vakitler*.dmg
 ```
 
 Sonra DMG dosyasını tekrar açın.
