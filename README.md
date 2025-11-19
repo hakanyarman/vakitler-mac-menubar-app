@@ -17,11 +17,37 @@
 
 ### Kullanıcılar için
 
-1. [Releases](https://github.com/kullaniciadi/vakitler-menubar-app/releases) sayfasından en son DMG dosyasını indirin
+1. [Releases](https://github.com/hakanyarman/vakitler-mac-menubar-app/releases) sayfasından Mac tipinize uygun DMG dosyasını indirin:
+   - **M1/M2/M3 Mac** → `arm64` versiyonu
+   - **Intel Mac** → `x64` versiyonu
 2. DMG dosyasını açın
 3. Uygulamayı Applications klasörüne sürükleyin
-4. İlk açılışta güvenlik uyarısı alabilirsiniz:
-   - System Settings > Privacy & Security bölümünden "Open Anyway" seçeneğini kullanın
+4. Uygulamayı açın
+
+### ⚠️ İlk Açılışta Güvenlik Uyarısı
+
+macOS, imzalanmamış uygulamalar için güvenlik uyarısı verir. Bu **tamamen normal** ve uygulamayı açmak **güvenlidir**. İki yöntemle çözebilirsiniz:
+
+#### Yöntem 1: Sağ Tık ile Açma (Önerilen - En Kolay) ✅
+
+1. Çıkan güvenlik uyarısında **"Tamam"** butonuna tıklayın
+2. **Finder** > **Applications** klasöründe "Vakitler Menubar App" uygulamasını bulun
+3. Uygulamaya **sağ tıklayın** (veya Control + Sol Tık)
+4. **"Open"** (Aç) seçeneğine tıklayın
+5. Çıkan yeni uyarıda **"Open"** butonuna tekrar tıklayın
+6. ✅ Uygulama açılacak ve bir daha bu uyarı çıkmayacak!
+
+#### Yöntem 2: System Settings'den
+
+1. Güvenlik uyarısında **"Tamam"** butonuna tıklayın
+2. **System Settings** (Sistem Tercihleri) > **Privacy & Security** bölümüne gidin
+3. Aşağı kaydırın, "_Vakitler Menubar App_ açılamıyor" yazısını bulun
+4. Yanındaki **"Open Anyway"** butonuna tıklayın
+5. Şifrenizi girin
+6. Uygulamayı tekrar çalıştırın
+7. ✅ Uygulama artık her zaman açılacak!
+
+> **Not:** Bu uyarı sadece ilk açılışta çıkar. Sonraki açılışlarda sorun olmaz.
 
 ### Geliştiriciler için
 
