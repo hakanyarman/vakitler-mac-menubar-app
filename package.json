@@ -1,0 +1,95 @@
+{
+  "name": "vakitler-menubar-app",
+  "version": "1.0.0",
+  "description": "macOS menübar namaz vakitleri uygulaması",
+  "main": "dist/main.js",
+  "scripts": {
+    "dev": "tsc && electron .",
+    "build": "tsc",
+    "start": "electron .",
+    "watch": "tsc --watch",
+    "package": "electron-builder"
+  },
+  "keywords": [
+    "electron",
+    "menubar",
+    "ezan",
+    "prayer-times",
+    "diyanet"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "electron": "^28.0.0",
+    "electron-builder": "^24.9.1",
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "axios": "^1.6.2",
+    "electron-store": "^8.1.0"
+  },
+  "build": {
+    "appId": "com.vakitler.menubarapp",
+    "productName": "Vakitler Menubar App",
+    "files": [
+      "dist/main.js",
+      "dist/services/**/*",
+      "dist/types/**/*",
+      "dist/config/**/*",
+      "dist/renderer/**/*",
+      "package.json",
+      "!**/*.ts",
+      "!**/*.map",
+      "!src/**/*"
+    ],
+    "asarUnpack": [],
+    "asar": true,
+    "compression": "maximum",
+    "npmRebuild": false,
+    "nodeGypRebuild": false,
+    "buildDependenciesFromSource": false,
+    "mac": {
+      "category": "public.app-category.lifestyle",
+      "target": [
+        {
+          "target": "dmg",
+          "arch": ["arm64", "x64"]
+        },
+        {
+          "target": "zip",
+          "arch": ["arm64", "x64"]
+        }
+      ],
+      "icon": "assets/icon.icns",
+      "minimumSystemVersion": "10.13",
+      "extendInfo": {
+        "LSUIElement": true,
+        "NSLocationWhenInUseUsageDescription": "Vakitler Menubar App konumunuzu kullanarak size en yakın namaz vakitlerini göstermek için konum bilgisine ihtiyaç duyar.",
+        "NSLocationAlwaysUsageDescription": "Vakitler Menubar App konumunuzu kullanarak size en yakın namaz vakitlerini göstermek için konum bilgisine ihtiyaç duyar."
+      }
+    },
+    "dmg": {
+      "background": null,
+      "icon": "assets/icon.icns",
+      "iconSize": 80,
+      "contents": [
+        {
+          "x": 130,
+          "y": 220
+        },
+        {
+          "x": 410,
+          "y": 220,
+          "type": "link",
+          "path": "/Applications"
+        }
+      ],
+      "window": {
+        "width": 540,
+        "height": 380
+      },
+      "format": "ULFO"
+    }
+  }
+}

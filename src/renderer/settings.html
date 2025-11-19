@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Konum Ayarları - Vakitler</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          sans-serif;
+        background: white;
+        padding: 0;
+        margin: 0;
+        height: 100vh;
+        overflow: hidden;
+      }
+
+      .container {
+        background: white;
+        border-radius: 0;
+        padding: 12px;
+        width: 100%;
+        height: 100%;
+        box-shadow: none;
+        overflow-y: auto;
+      }
+
+      /* Header */
+      .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 12px;
+      }
+
+      .header-title {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 17px;
+        font-weight: 600;
+        color: #1d1d1f;
+      }
+
+      .header-icon {
+        width: 18px;
+        height: 18px;
+        color: #86868b;
+        display: inline-block;
+        flex-shrink: 0;
+      }
+
+      .header-icon svg {
+        width: 100%;
+        height: 100%;
+        stroke: currentColor;
+        fill: none;
+        stroke-width: 2;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      .cancel-btn {
+        background: none;
+        border: none;
+        color: #007aff;
+        font-size: 14px;
+        cursor: pointer;
+        padding: 4px 8px;
+        border-radius: 6px;
+        transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        font-weight: 500;
+      }
+
+      .cancel-btn:hover {
+        background: rgba(0, 122, 255, 0.1);
+        transform: translateY(-1px);
+      }
+
+      .cancel-btn:active {
+        transform: translateY(0);
+      }
+
+      /* Form */
+      .form-group {
+        margin-bottom: 12px;
+      }
+
+      label {
+        display: block;
+        color: #1d1d1f;
+        font-weight: 500;
+        margin-bottom: 6px;
+        font-size: 14px;
+      }
+
+      .input-wrapper {
+        position: relative;
+      }
+
+      input[type="text"] {
+        width: 100%;
+        padding: 10px 36px 10px 14px;
+        border: 1px solid #d1d1d6;
+        border-radius: 8px;
+        font-size: 14px;
+        transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        outline: none;
+        background: white;
+      }
+
+      input[type="text"]:hover {
+        border-color: #86868b;
+      }
+
+      input[type="text"]:focus {
+        border-color: #007aff;
+        box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.1);
+      }
+
+      input[type="text"]:disabled {
+        background: #f5f5f7;
+        color: #86868b;
+        cursor: not-allowed;
+      }
+
+      .input-icon {
+        position: absolute;
+        right: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 16px;
+        height: 16px;
+        color: #86868b;
+        pointer-events: none;
+        display: inline-block;
+      }
+
+      .input-icon svg {
+        width: 100%;
+        height: 100%;
+        stroke: currentColor;
+        fill: none;
+        stroke-width: 2;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      .autocomplete-results {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: white;
+        border: 1px solid #d1d1d6;
+        border-top: none;
+        border-radius: 0 0 8px 8px;
+        max-height: 200px;
+        overflow-y: auto;
+        z-index: 1000;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        display: none;
+        margin-top: -1px;
+      }
+
+      .autocomplete-results.show {
+        display: block;
+      }
+
+      .autocomplete-item {
+        padding: 12px 16px;
+        cursor: pointer;
+        transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        border-bottom: 1px solid #f5f5f7;
+        font-size: 15px;
+        color: #1d1d1f;
+      }
+
+      .autocomplete-item:last-child {
+        border-bottom: none;
+      }
+
+      .autocomplete-item:hover {
+        background: rgba(0, 122, 255, 0.08);
+        padding-left: 20px;
+      }
+
+      .autocomplete-item.selected {
+        background: #007aff;
+        color: white;
+        padding-left: 20px;
+      }
+
+      /* Save Button */
+      .save-btn {
+        width: 100%;
+        padding: 10px;
+        background: #007aff;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        margin-top: 4px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .save-btn::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.2),
+          transparent
+        );
+        transition: left 0.5s;
+      }
+
+      .save-btn:hover {
+        background: #0051d5;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 122, 255, 0.4);
+      }
+
+      .save-btn:hover::before {
+        left: 100%;
+      }
+
+      .save-btn:active {
+        transform: translateY(0);
+        box-shadow: 0 2px 6px rgba(0, 122, 255, 0.3);
+      }
+
+      .save-btn:disabled {
+        background: #d1d1d6;
+        cursor: not-allowed;
+        transform: none;
+        box-shadow: none;
+      }
+
+      .save-btn:disabled:hover {
+        transform: none;
+        box-shadow: none;
+      }
+
+      .error {
+        background: #fee;
+        color: #c33;
+        padding: 12px;
+        border-radius: 8px;
+        margin-top: 16px;
+        display: none;
+        font-size: 14px;
+      }
+
+      .error.show {
+        display: block;
+      }
+
+      /* Toast Notification */
+      .toast {
+        position: fixed;
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%) translateY(-100px);
+        background: rgba(29, 29, 31, 0.95);
+        backdrop-filter: blur(20px) saturate(180%);
+        -webkit-backdrop-filter: blur(20px) saturate(180%);
+        color: white;
+        padding: 12px 18px;
+        border-radius: 10px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3),
+          0 0 0 0.5px rgba(255, 255, 255, 0.1);
+        font-size: 14px;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        z-index: 10000;
+        opacity: 0;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        pointer-events: none;
+        min-width: 200px;
+        text-align: center;
+      }
+
+      .toast.show {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+      }
+
+      .toast-icon {
+        width: 18px;
+        height: 18px;
+        color: #34c759;
+        display: inline-block;
+        flex-shrink: 0;
+      }
+
+      .toast-icon svg {
+        width: 100%;
+        height: 100%;
+        stroke: currentColor;
+        fill: none;
+        stroke-width: 2.5;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+      <span class="toast-icon">
+        <svg viewBox="0 0 24 24">
+          <polyline points="20 6 9 17 4 12"></polyline>
+        </svg>
+      </span>
+      <span>Konum başarıyla kaydedildi</span>
+    </div>
+
+    <div class="container">
+      <!-- Header -->
+      <div class="header">
+        <div class="header-title">
+          <span class="header-icon">
+            <svg viewBox="0 0 24 24">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+              <circle cx="12" cy="10" r="3"></circle>
+            </svg>
+          </span>
+          <span>Konum Ayarları</span>
+        </div>
+        <button class="cancel-btn" id="cancelBtn">İptal</button>
+      </div>
+
+      <!-- Form -->
+      <form id="locationForm">
+        <div class="form-group">
+          <label for="cityInput">Şehir</label>
+          <div class="input-wrapper">
+            <input
+              type="text"
+              id="cityInput"
+              placeholder="Şehir Ara"
+              autocomplete="off"
+            />
+            <span class="input-icon">
+              <svg viewBox="0 0 24 24">
+                <circle cx="11" cy="11" r="8"></circle>
+                <path d="m21 21-4.35-4.35"></path>
+              </svg>
+            </span>
+            <div id="cityResults" class="autocomplete-results"></div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="districtInput">İlçe</label>
+          <div class="input-wrapper">
+            <input
+              type="text"
+              id="districtInput"
+              placeholder="Bir ilçe seçin"
+              autocomplete="off"
+              disabled
+            />
+            <span class="input-icon">
+              <svg viewBox="0 0 24 24">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </span>
+            <div id="districtResults" class="autocomplete-results"></div>
+          </div>
+        </div>
+
+        <button type="submit" class="save-btn" id="saveBtn" disabled>
+          Kaydet
+        </button>
+      </form>
+
+      <div class="error" id="error"></div>
+    </div>
+
+    <script src="settings-renderer.js"></script>
+  </body>
+</html>

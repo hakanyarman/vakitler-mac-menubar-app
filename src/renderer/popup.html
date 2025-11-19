@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vakitler</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          "Helvetica Neue", Arial, sans-serif;
+        background: transparent;
+        color: #1d1d1f;
+        overflow: hidden;
+        -webkit-app-region: drag;
+        user-select: none;
+        padding: 4px 8px 8px 8px;
+        margin: 0;
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        min-height: 100vh;
+      }
+
+      .container {
+        width: 320px;
+        padding: 16px;
+        -webkit-app-region: no-drag;
+        background: #ffffff;
+        border-radius: 12px;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1), 0 2px 8px rgba(0, 0, 0, 0.08),
+          0 0 0 0.5px rgba(0, 0, 0, 0.05);
+        backdrop-filter: blur(20px);
+      }
+
+      /* Header */
+      .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 12px;
+        padding-bottom: 12px;
+        border-bottom: 1px solid #e5e5e7;
+      }
+
+      .location {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        font-size: 13px;
+        color: #1d1d1f;
+        cursor: pointer;
+        transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        outline: none;
+        tabindex: 0;
+        border-radius: 4px;
+        padding: 2px 4px;
+      }
+
+      .location:hover,
+      .location:focus {
+        opacity: 0.8;
+        background: rgba(0, 122, 255, 0.12);
+        transform: translateX(2px);
+      }
+
+      .location:active {
+        transform: translateX(0);
+      }
+
+      .location:focus {
+        box-shadow: 0 0 0 2px rgba(0, 122, 255, 0.3);
+      }
+
+      .location-icon {
+        width: 16px;
+        height: 16px;
+        display: inline-block;
+        flex-shrink: 0;
+      }
+
+      .location-icon svg {
+        width: 100%;
+        height: 100%;
+        stroke: currentColor;
+        fill: none;
+        stroke-width: 2;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      .date {
+        font-size: 11px;
+        color: #1d1d1f;
+        text-align: right;
+      }
+
+      /* Next Prayer Card */
+      .next-prayer-card {
+        background: #e3f2fd;
+        border-radius: 8px;
+        padding: 16px;
+        margin-bottom: 12px;
+        text-align: center;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .next-prayer-card.urgent {
+        background: #ffebee;
+      }
+
+      .next-prayer-name {
+        font-size: 16px;
+        font-weight: 600;
+        color: #1976d2;
+        margin-bottom: 8px;
+      }
+
+      .next-prayer-card.urgent .next-prayer-name {
+        color: #d32f2f;
+      }
+
+      .next-prayer-time {
+        font-size: 48px;
+        font-weight: 700;
+        color: #1d1d1f;
+        margin-bottom: 8px;
+        letter-spacing: -2px;
+        line-height: 1;
+      }
+
+      .next-prayer-remaining {
+        font-size: 12px;
+        color: #1d1d1f;
+      }
+
+      .next-prayer-card.urgent .next-prayer-remaining {
+        color: #d32f2f;
+        font-weight: 600;
+      }
+
+      /* Prayer List */
+      .prayer-list {
+        margin-bottom: 12px;
+      }
+
+      .prayer-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 12px;
+        font-size: 14px;
+        border-radius: 6px;
+        margin-bottom: 2px;
+      }
+
+      .prayer-item.active {
+        background: #e3f2fd;
+      }
+
+      .prayer-item.active.urgent {
+        background: #ffebee;
+      }
+
+      .prayer-name {
+        font-weight: 500;
+        color: #1d1d1f;
+      }
+
+      .prayer-item.active .prayer-name {
+        color: #1976d2;
+        font-weight: 600;
+      }
+
+      .prayer-time {
+        font-weight: 500;
+        color: #1d1d1f;
+      }
+
+      .prayer-item.active .prayer-time {
+        color: #1d1d1f;
+        font-weight: 600;
+      }
+
+      /* Actions */
+      .actions {
+        padding-top: 12px;
+        border-top: 1px solid #e5e5e7;
+      }
+
+      .action-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 12px;
+        font-size: 13px;
+        color: #1d1d1f;
+        cursor: pointer;
+        border-radius: 6px;
+        transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        margin-bottom: 2px;
+        outline: none;
+        tabindex: 0;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .action-item::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: #007aff;
+        opacity: 0;
+        transition: opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 0;
+      }
+
+      .action-item > * {
+        position: relative;
+        z-index: 1;
+      }
+
+      .action-item:hover:not(.loading),
+      .action-item:focus {
+        background: rgba(0, 122, 255, 0.1);
+        color: #1d1d1f;
+        transform: translateY(-1px);
+        box-shadow: 0 2px 8px rgba(0, 122, 255, 0.2);
+      }
+
+      .action-item:active:not(.loading) {
+        transform: translateY(0);
+        box-shadow: 0 1px 4px rgba(0, 122, 255, 0.2);
+      }
+
+      .action-item:focus {
+        box-shadow: 0 0 0 2px rgba(0, 122, 255, 0.3),
+          0 2px 8px rgba(0, 122, 255, 0.3);
+      }
+
+      .action-item.loading {
+        cursor: wait;
+        opacity: 0.7;
+      }
+
+      .action-item.loading:hover {
+        background: transparent;
+        color: #1d1d1f;
+      }
+
+      .action-icon {
+        width: 16px;
+        height: 16px;
+        display: inline-block;
+        flex-shrink: 0;
+      }
+
+      .action-icon svg {
+        width: 100%;
+        height: 100%;
+        stroke: currentColor;
+        fill: none;
+        stroke-width: 2;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      .spinner {
+        display: inline-block;
+        width: 14px;
+        height: 14px;
+        border: 2px solid rgba(29, 29, 31, 0.3);
+        border-top-color: #1d1d1f;
+        border-radius: 50%;
+        animation: spin 0.6s linear infinite;
+      }
+
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      /* Quit button */
+      .quit-btn {
+        margin-top: 4px;
+        width: 100%;
+        padding: 10px 12px;
+        background: transparent;
+        border: none;
+        border-radius: 6px;
+        font-size: 13px;
+        color: #1d1d1f;
+        cursor: pointer;
+        transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        font-family: inherit;
+        text-align: left;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        outline: none;
+        tabindex: 0;
+        position: relative;
+      }
+
+      .quit-btn:hover,
+      .quit-btn:focus {
+        background: rgba(0, 122, 255, 0.1);
+        color: #1d1d1f;
+        transform: translateY(-1px);
+        box-shadow: 0 2px 8px rgba(0, 122, 255, 0.2);
+      }
+
+      .quit-btn:active {
+        transform: translateY(0);
+        box-shadow: 0 1px 4px rgba(0, 122, 255, 0.2);
+      }
+
+      .quit-btn:focus {
+        box-shadow: 0 0 0 2px rgba(0, 122, 255, 0.3),
+          0 2px 8px rgba(0, 122, 255, 0.3);
+      }
+
+      .quit-icon {
+        width: 16px;
+        height: 16px;
+        display: inline-block;
+        flex-shrink: 0;
+      }
+
+      .quit-icon svg {
+        width: 100%;
+        height: 100%;
+        stroke: currentColor;
+        fill: none;
+        stroke-width: 2;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <!-- Header -->
+      <div class="header">
+        <div class="location" id="locationBtn">
+          <span class="location-icon">
+            <svg viewBox="0 0 24 24">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+              <circle cx="12" cy="10" r="3"></circle>
+            </svg>
+          </span>
+          <span id="locationText">İstanbul, Fatih</span>
+        </div>
+        <div class="date" id="dateText">19 Kasım | 19 Zilkade</div>
+      </div>
+
+      <!-- Next Prayer Card -->
+      <div class="next-prayer-card" id="nextPrayerCard">
+        <div class="next-prayer-name" id="nextPrayerName">İkindi</div>
+        <div class="next-prayer-time" id="nextPrayerTime">15:26</div>
+        <div class="next-prayer-remaining" id="nextPrayerRemaining">
+          Kalan Süre: 2s 20dk
+        </div>
+      </div>
+
+      <!-- Prayer List -->
+      <div class="prayer-list" id="prayerList">
+        <!-- Dinamik olarak doldurulacak -->
+      </div>
+
+      <!-- Actions -->
+      <div class="actions">
+        <div class="action-item" id="settingsBtn">
+          <span class="action-icon">
+            <svg viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="3"></circle>
+              <path
+                d="M12 1v6m0 6v6m9-9h-6m-6 0H3m15.364 6.364l-4.243-4.243m-4.242 0L5.636 17.364m12.728 0l-4.243-4.243m-4.242 0L5.636 6.636"
+              ></path>
+            </svg>
+          </span>
+          <span>Konum Ayarları</span>
+        </div>
+        <div class="action-item" id="refreshBtn">
+          <span class="action-icon" id="refreshIcon">
+            <svg viewBox="0 0 24 24">
+              <path
+                d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"
+              ></path>
+              <path d="M21 3v5h-5"></path>
+              <path
+                d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"
+              ></path>
+              <path d="M3 21v-5h5"></path>
+            </svg>
+          </span>
+          <span id="refreshText">Yenile</span>
+        </div>
+        <div class="action-item quit-btn" id="quitBtn">
+          <span class="quit-icon">
+            <svg viewBox="0 0 24 24">
+              <path d="M18.36 6.64a9 9 0 1 1-12.73 0"></path>
+              <line x1="12" y1="2" x2="12" y2="12"></line>
+            </svg>
+          </span>
+          <span>Çıkış</span>
+        </div>
+      </div>
+    </div>
+
+    <script src="popup-renderer.js"></script>
+  </body>
+</html>
