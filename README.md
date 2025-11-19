@@ -12,54 +12,61 @@
   ### [📥 Download Latest Release](https://github.com/hakanyarman/vakitler-mac-menubar-app/releases/latest)
 </div>
 
-## ✨ Özellikler
+## Özellikler
 
-- 📿 Günlük namaz vakitlerini gösterir (İmsak, Güneş, Öğle, İkindi, Akşam, Yatsı)
-- ⏰ Bir sonraki namaz vaktine kalan süreyi canlı olarak gösterir
-- 🔄 Otomatik güncelleme (30 dakikada bir)
-- 🎯 Hafif ve kullanımı kolay menübar uygulaması
-- 📍 Türkiye'nin tüm il ve ilçeleri için konum seçimi
+- **Menübar'da bir sonraki namaz vaktine kalan süreyi anlık olarak gösterir - uygulamayı açmanıza gerek kalmaz**
+- Günlük namaz vakitlerini gösterir (İmsak, Güneş, Öğle, İkindi, Akşam, Yatsı)
+- Otomatik güncelleme (30 dakikada bir)
+- Türkiye'nin tüm il ve ilçeleri için konum seçimi
 
-## 📥 Kurulum
+## Ekran Görüntüleri
+
+<div align="center">
+  <img src="assets/screenshots/menubar.png" alt="Menübar Görünümü" width="300">
+  <p><em>Menübar'da kalan süre gösterimi</em></p>
+</div>
+
+<div align="center">
+  <img src="assets/screenshots/popup.png" alt="Popup Penceresi" width="400">
+  <p><em>Tüm namaz vakitleri ve konum bilgisi</em></p>
+</div>
+
+## Kurulum
 
 ### Kullanıcılar için
 
-**📦 [En Son Sürümü İndirin](https://github.com/hakanyarman/vakitler-mac-menubar-app/releases/latest)**
+[En son sürümü indirin](https://github.com/hakanyarman/vakitler-mac-menubar-app/releases/latest)
 
 Mac tipinize uygun DMG dosyasını seçin:
-- 🍎 **Apple Silicon (M1/M2/M3)** → `Vakitler Menubar App-x.x.x-arm64.dmg`
-- 💻 **Intel Mac** → `Vakitler Menubar App-x.x.x.dmg`
+- **Apple Silicon (M1/M2/M3):** `Vakitler Menubar App-x.x.x-arm64.dmg`
+- **Intel Mac:** `Vakitler Menubar App-x.x.x.dmg`
 
-**Kurulum Adımları:**
+Kurulum adımları:
 1. DMG dosyasını indirin
-2. DMG dosyasını açın (çift tıklayın)
-3. Uygulamayı **Applications** klasörüne sürükleyin
-4. Uygulamayı açın
+2. DMG dosyasını çift tıklayarak açın
+3. Uygulamayı Applications klasörüne sürükleyin
+4. Uygulamayı başlatın
 
-### ⚠️ İlk Açılışta Güvenlik Uyarısı
+### İlk Açılışta Güvenlik Uyarısı
 
-macOS, imzalanmamış uygulamalar için güvenlik uyarısı verir. Bu **tamamen normal** ve uygulamayı açmak **güvenlidir**. İki yöntemle çözebilirsiniz:
+macOS, imzalanmamış uygulamalar için güvenlik uyarısı verir. Bu tamamen normaldir.
 
-#### Yöntem 1: Sağ Tık ile Açma (Önerilen - En Kolay) ✅
+**Yöntem 1: Sağ tık ile açma**
 
-1. Çıkan güvenlik uyarısında **"Tamam"** butonuna tıklayın
-2. **Finder** > **Applications** klasöründe "Vakitler Menubar App" uygulamasını bulun
-3. Uygulamaya **sağ tıklayın** (veya Control + Sol Tık)
-4. **"Open"** (Aç) seçeneğine tıklayın
-5. Çıkan yeni uyarıda **"Open"** butonuna tekrar tıklayın
-6. ✅ Uygulama açılacak ve bir daha bu uyarı çıkmayacak!
+1. Güvenlik uyarısında "Tamam" butonuna tıklayın
+2. Finder > Applications klasöründe uygulamayı bulun
+3. Uygulamaya sağ tıklayın (veya Control + Sol Tık)
+4. "Open" seçeneğine tıklayın
+5. Çıkan uyarıda tekrar "Open" butonuna tıklayın
 
-#### Yöntem 2: System Settings'den
+**Yöntem 2: System Settings'den**
 
-1. Güvenlik uyarısında **"Tamam"** butonuna tıklayın
-2. **System Settings** (Sistem Tercihleri) > **Privacy & Security** bölümüne gidin
-3. Aşağı kaydırın, "_Vakitler Menubar App_ açılamıyor" yazısını bulun
-4. Yanındaki **"Open Anyway"** butonuna tıklayın
-5. Şifrenizi girin
-6. Uygulamayı tekrar çalıştırın
-7. ✅ Uygulama artık her zaman açılacak!
+1. System Settings > Privacy & Security bölümüne gidin
+2. "Vakitler Menubar App açılamıyor" yazısını bulun
+3. Yanındaki "Open Anyway" butonuna tıklayın
+4. Uygulamayı tekrar çalıştırın
 
-> **Not:** Bu uyarı sadece ilk açılışta çıkar. Sonraki açılışlarda sorun olmaz.
+Not: Bu uyarı sadece ilk açılışta çıkar.
 
 ### Geliştiriciler için
 
@@ -80,29 +87,22 @@ npm start
 npm run package
 ```
 
-## 🎯 Kullanım
+## Kullanım
 
-1. Uygulama başladığında menübar'da (saat yanında) görünür
-2. İkona tıklayarak namaz vakitlerini görüntüleyin
-3. Bir sonraki namaz vaktine kalan süre otomatik hesaplanır
-4. "Konum Ayarları" ile şehir ve ilçe seçebilirsiniz
-5. "Yenile" butonu ile vakitleri manuel güncelleyebilirsiniz
+Uygulama başladığında menübar'da (saat yanında) görünür. İkona tıklayarak namaz vakitlerini görüntüleyebilirsiniz. Bir sonraki namaz vaktine kalan süre otomatik hesaplanır.
 
-## 📍 Konum Ayarları
+**Konum Ayarları**
 
-Varsayılan olarak **İstanbul/İstanbul** için namaz vakitleri gösterilir.
-
-Kendi konumunuzu ayarlamak için:
+Varsayılan olarak İstanbul için namaz vakitleri gösterilir. Kendi konumunuzu ayarlamak için:
 
 1. Menübar ikonuna tıklayın
 2. "Konum Ayarları" butonuna tıklayın
-3. Şehir adını yazmaya başlayın (arama otomatik çalışır)
-4. Şehir seçtikten sonra ilçe seçin
-5. "Kaydet" butonuna tıklayın
+3. Şehir ve ilçe seçin
+4. "Kaydet" butonuna tıklayın
 
-> Türkiye'nin 81 ili ve tüm ilçeleri kullanılabilir.
+Türkiye'nin 81 ili ve tüm ilçeleri kullanılabilir.
 
-## 🛠 Teknolojiler
+## Teknolojiler
 
 - [Electron](https://www.electronjs.org/) - macOS menübar uygulaması
 - [TypeScript](https://www.typescriptlang.org/) - Tip güvenli geliştirme
@@ -110,17 +110,11 @@ Kendi konumunuzu ayarlamak için:
 - [electron-store](https://github.com/sindresorhus/electron-store) - Konum ayarlarını kaydetme
 - [Vakit API](https://vakit.vercel.app) - Namaz vakitleri API'si
 
-## 🌐 API ve Veri Kaynağı
+## API ve Veri Kaynağı
 
-Uygulama [Vakit API](https://vakit.vercel.app) kullanıyor:
+Uygulama [Vakit API](https://vakit.vercel.app) kullanıyor. Diyanet İşleri Başkanlığı standartlarına uygun, Türkiye'nin tüm il ve ilçeleri için gerçek zamanlı güncel vakitler sağlar.
 
-✅ Diyanet İşleri Başkanlığı standartlarına uygun  
-✅ Türkiye'nin tüm il ve ilçeleri  
-✅ Gerçek zamanlı güncel vakitler  
-✅ Ücretsiz ve açık kaynak  
-✅ API key gerektirmez
-
-## 📁 Proje Yapısı
+## Proje Yapısı
 
 ```
 vakitler-menubar-app/
@@ -145,7 +139,7 @@ vakitler-menubar-app/
 └── README.md
 ```
 
-## 🔧 Geliştirme
+## Geliştirme
 
 ### Debug Modu
 
@@ -172,20 +166,12 @@ Build sonrası `dist/` klasöründe şunlar oluşur:
 - `Vakitler Menubar App-1.0.0-arm64.dmg` (Apple Silicon)
 - `Vakitler Menubar App-1.0.0-arm64-mac.zip` (Apple Silicon)
 
-## 💾 Sistem Gereksinimleri
+## Sistem Gereksinimleri
 
 - macOS 10.13 veya üzeri
 - Apple Silicon (M1/M2/M3) veya Intel Mac
 - ~225 MB disk alanı
 
-## 🤝 Katkıda Bulunma
+## Lisans
 
-1. Fork yapın
-2. Feature branch oluşturun (`git checkout -b feature/yeni-ozellik`)
-3. Değişikliklerinizi commit edin (`git commit -m 'Yeni özellik eklendi'`)
-4. Branch'inizi push edin (`git push origin feature/yeni-ozellik`)
-5. Pull Request açın
-
-## 🙏 Teşekkürler
-
-- [Vakit API](https://vakit.vercel.app) - Namaz vakitleri verisi için
+MIT
