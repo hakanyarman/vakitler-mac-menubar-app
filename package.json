@@ -32,7 +32,6 @@
   "build": {
     "appId": "com.vakitler.menubarapp",
     "productName": "Vakitler Menubar App",
-    "publish": "never",
     "files": [
       "dist/main.js",
       "dist/services/**/*",

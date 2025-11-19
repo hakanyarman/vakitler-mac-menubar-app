@@ -34,7 +34,7 @@ jobs:
           cp src/renderer/*.js src/renderer/*.html dist/renderer/
 
       - name: Build app
-        run: npm run package
+        run: npx electron-builder --publish never
         env:
           CSC_IDENTITY_AUTO_DISCOVERY: false
 
