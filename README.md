@@ -47,26 +47,32 @@ Kurulum adımları:
 3. Uygulamayı Applications klasörüne sürükleyin
 4. Uygulamayı başlatın
 
-### İlk Açılışta Güvenlik Uyarısı
+### Güvenlik Uyarıları
 
-macOS, imzalanmamış uygulamalar için güvenlik uyarısı verir. Bu tamamen normaldir.
+Uygulama Apple Developer hesabı ile imzalanmadığı için macOS güvenlik uyarıları verebilir. Bu tamamen normaldir ve güvenle kullanabilirsiniz.
 
-**Yöntem 1: Sağ tık ile açma**
+**Sorun 1: DMG "damaged and can't be opened" hatası**
 
-1. Güvenlik uyarısında "Tamam" butonuna tıklayın
-2. Finder > Applications klasöründe uygulamayı bulun
-3. Uygulamaya sağ tıklayın (veya Control + Sol Tık)
-4. "Open" seçeneğine tıklayın
-5. Çıkan uyarıda tekrar "Open" butonuna tıklayın
+Chrome ile indirdiyseniz bu hatayı alabilirsiniz. Terminal'de şu komutu çalıştırın:
 
-**Yöntem 2: System Settings'den**
+```bash
+xattr -cr ~/Downloads/Vakitler\ Menubar\ App-*.dmg
+```
 
-1. System Settings > Privacy & Security bölümüne gidin
-2. "Vakitler Menubar App açılamıyor" yazısını bulun
-3. Yanındaki "Open Anyway" butonuna tıklayın
-4. Uygulamayı tekrar çalıştırın
+Sonra DMG dosyasını tekrar açın.
 
-Not: Bu uyarı sadece ilk açılışta çıkar.
+**Sorun 2: Uygulama açılmıyor**
+
+Uygulamayı ilk kez açarken "açılamıyor" uyarısı alırsanız:
+
+1. Finder > Applications klasöründe uygulamayı bulun
+2. Uygulamaya **sağ tıklayın** (veya Control + Sol Tık)
+3. **"Open"** seçeneğine tıklayın
+4. Çıkan uyarıda tekrar **"Open"** butonuna tıklayın
+
+Alternatif: System Settings > Privacy & Security > "Open Anyway"
+
+Not: Bu uyarılar sadece ilk açılışta çıkar.
 
 ### Geliştiriciler için
 
