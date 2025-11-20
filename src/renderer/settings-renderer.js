@@ -46,16 +46,10 @@ ipcRenderer.on("cities-error", (_event, error) => {
 cityInput.addEventListener("input", () => {
   const query = cityInput.value.trim().toLowerCase();
 
-  if (query.length < 1) {
-    cityResults.classList.remove("show");
-    cityResults.innerHTML = "";
-    return;
-  }
-
-  // Türkçe karakter desteği ile arama
-  const filtered = cities.filter((city) =>
-    turkishToLower(city).includes(query)
-  );
+  // Query boşsa tüm şehirleri göster
+  const filtered = query.length > 0
+    ? cities.filter((city) => turkishToLower(city).includes(query))
+    : cities;
 
   displayResults(filtered, cityResults, (city) => {
     cityInput.value = city;
@@ -65,6 +59,23 @@ cityInput.addEventListener("input", () => {
     // İlçeleri yükle
     loadDistricts(city);
   });
+});
+
+// Şehir input - focus/click olduğunda dropdown aç
+cityInput.addEventListener("focus", () => {
+  if (cities.length > 0) {
+    const query = cityInput.value.trim().toLowerCase();
+    const filtered = query.length > 0
+      ? cities.filter((city) => turkishToLower(city).includes(query))
+      : cities;
+    
+    displayResults(filtered, cityResults, (city) => {
+      cityInput.value = city;
+      selectedCity = city;
+      cityResults.classList.remove("show");
+      loadDistricts(city);
+    });
+  }
 });
 
 // Şehir input - klavye navigasyonu
@@ -81,15 +92,10 @@ cityInput.addEventListener("keydown", (e) => {
 districtInput.addEventListener("input", () => {
   const query = districtInput.value.trim().toLowerCase();
 
-  if (query.length < 1) {
-    districtResults.classList.remove("show");
-    districtResults.innerHTML = "";
-    return;
-  }
-
-  const filtered = districts.filter((district) =>
-    turkishToLower(district).includes(query)
-  );
+  // Query boşsa tüm ilçeleri göster
+  const filtered = query.length > 0
+    ? districts.filter((district) => turkishToLower(district).includes(query))
+    : districts;
 
   displayResults(filtered, districtResults, (district) => {
     districtInput.value = district;
@@ -97,6 +103,23 @@ districtInput.addEventListener("input", () => {
     districtResults.classList.remove("show");
     updateSaveButton();
   });
+});
+
+// İlçe input - focus/click olduğunda dropdown aç
+districtInput.addEventListener("focus", () => {
+  if (districts.length > 0) {
+    const query = districtInput.value.trim().toLowerCase();
+    const filtered = query.length > 0
+      ? districts.filter((district) => turkishToLower(district).includes(query))
+      : districts;
+    
+    displayResults(filtered, districtResults, (district) => {
+      districtInput.value = district;
+      selectedDistrict = district;
+      districtResults.classList.remove("show");
+      updateSaveButton();
+    });
+  }
 });
 
 // İlçe input - klavye navigasyonu
@@ -145,18 +168,26 @@ function displayResults(items, container, onSelect) {
     return;
   }
 
-  container.innerHTML = items
-    .slice(0, 10) // İlk 10 sonucu göster
+  // Daha fazla sonuç göster (10 yerine 50)
+  const maxResults = 50;
+  const itemsToShow = items.slice(0, maxResults);
+  
+  container.innerHTML = itemsToShow
     .map(
       (item) =>
         `<div class="autocomplete-item" data-value="${item}">${item}</div>`
     )
     .join("");
+  
+  // Eğer daha fazla sonuç varsa bilgi göster
+  if (items.length > maxResults) {
+    container.innerHTML += `<div class="autocomplete-item" style="color: #999; font-style: italic;">+${items.length - maxResults} sonuç daha... Aramaya devam edin.</div>`;
+  }
 
   container.classList.add("show");
 
   // Click event
-  container.querySelectorAll(".autocomplete-item").forEach((el) => {
+  container.querySelectorAll(".autocomplete-item[data-value]").forEach((el) => {
     el.addEventListener("click", () => {
       onSelect(el.getAttribute("data-value"));
     });
