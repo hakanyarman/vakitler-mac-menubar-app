@@ -22,13 +22,19 @@
 ## Ekran Görüntüleri
 
 <div align="center">
-  <img src="assets/screenshots/menubar.png" alt="Menübar Görünümü" width="300">
+  <img src="assets/screenshots/menubar.png" alt="Menübar Görünümü 1" width="280">
+  <img src="assets/screenshots/menubar-2.png" alt="Menübar Görünümü 2" width="280">
   <p><em>Menübar'da kalan süre gösterimi</em></p>
 </div>
 
 <div align="center">
   <img src="assets/screenshots/popup.png" alt="Popup Penceresi" width="400">
   <p><em>Tüm namaz vakitleri ve konum bilgisi</em></p>
+</div>
+
+<div align="center">
+  <img src="assets/screenshots/popup-2.png" alt="Popup Detay" width="400">
+  <p><em>Detaylı vakit bilgileri</em></p>
 </div>
 
 ## Kurulum
